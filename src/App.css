@@ -1,0 +1,207 @@
+/* loginregister */
+
+.header {
+  text-align: center;
+  background-color: #ececec;
+}
+
+.registerContainer {
+  width: 100%;
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.registerContainer > div {
+  width: 40%;
+  margin: auto;
+  margin: 10px 0;
+}
+.registerContainer > div > input {
+  width: 100%;
+  height: 45px;
+  border: none;
+  border-bottom: 1px solid grey;
+  border-radius: 5px;
+}
+
+.bottomSection {
+  width: 100%;
+  text-align: center;
+}
+/* Home */
+
+#homeHeader {
+  text-align: center;
+}
+
+#homebanner {
+  width: 80%;
+  margin: auto;
+  height: 500px;
+  /* border: 1px solid red; */
+}
+#homebanner > img {
+  width: 100%;
+  height: 100%;
+  /* object-fit: contain; */
+  border-radius: 100px;
+}
+#mainProductsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 100%;
+  /* border: 1px solid red; */
+  gap: 25px 0;
+  margin-top: 10px;
+}
+
+#singleproduct {
+  width: 18%;
+  border: 1px solid grey;
+  box-shadow: 2px 2px 15px black;
+  height: 520px;
+  cursor: pointer;
+}
+#singleproduct > img {
+  width: 100%;
+  height: 50%;
+}
+
+#prodId {
+  text-align: center;
+  background-color: rgb(193, 193, 193);
+}
+
+#prodTitle {
+  padding-left: 10px;
+  font-size: 1em;
+  font-weight: bolder;
+}
+
+#prodPrice {
+  padding-left: 10px;
+  color: red;
+  font-weight: bolder;
+}
+
+#prodCategory {
+  font-weight: bolder;
+  padding-left: 10px;
+  color: blue;
+}
+
+#loading {
+  width: 40px;
+  height: 40px;
+  border: 10px solid black;
+  border-radius: 50%;
+  animation: spin 2s linear infinite;
+}
+
+.inner {
+  width: 20px;
+  height: 20px;
+  border: 5px solid #fff;
+  border-radius: 50%;
+  position: relative;
+  top: -10px;
+  left: -10px;
+  animation: spin 2s linear infinite;
+}
+
+/* Single Product css */
+#singleProdContainer {
+  /* border: 1px solid red; */
+  /* background-color: aqua; */
+  display: flex;
+  justify-content: center;
+  margin-top: 3%;
+}
+
+#singleImgContainer {
+  /* border: 1px solid red; */
+  width: 35%;
+  height: 500px;
+}
+#singleImgContainer > img {
+  width: 90%;
+  height: 100%;
+}
+
+#singleProdDetails {
+  width: 35%;
+}
+
+button {
+  margin-left: 20px;
+}
+
+/* navbar */
+
+nav {
+  width: 100%;
+  /* border: 1px solid red; */
+  background-color: #ececec;
+  height: 70px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#logo {
+  width: 25%;
+}
+
+#rightNav {
+  display: flex;
+  width: 40%;
+  justify-content: space-evenly;
+  /* border: 1px solid red; */
+  background-color: antiquewhite;
+}
+
+.profLink {
+  color: black;
+  text-decoration: none;
+}
+#rightNav > button {
+  height: 50%;
+  margin-top: 3.5%;
+}
+
+/* cart */
+
+.cartContainer {
+  width: 100%;
+  /* border: 1px solid red; */
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 3%;
+  gap: 45px 0;
+}
+
+.proContainer {
+  width: 20%;
+  height: 550px;
+  border: 1px solid grey;
+  margin-left: 3%;
+  text-align: center;
+  box-shadow: 2px 1px 10px grey;
+}
+.proContainer > img {
+  width: 90%;
+  height: 250px;
+}
+
+.buyProd {
+  text-align: center;
+}
+
+/* Profile modal */
+
+input {
+  width: 80%;
+  height: 45px;
+}
