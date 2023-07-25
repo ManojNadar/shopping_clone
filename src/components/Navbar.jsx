@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-// import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MyContext } from "../Context/ContextContainer";
 import { NavLink } from "react-router-dom";
 import "../styles/Navbar.css";
@@ -13,26 +13,26 @@ const Navbar = () => {
 
   const [dropDown, setDropDown] = useState(false);
 
-  // const [isLoggedIn, setisLoggedIn] = useState(false);
-  // const [user, setUser] = useState({});
-  // const route = useNavigate();
+  const [isLoggedIn, setisLoggedIn] = useState(false);
+  const [user, setUser] = useState({});
+  const route = useNavigate();
   const { state, logout } = useContext(MyContext);
 
   // // console.log(state);
 
-  // useEffect(() => {
-  //   let currentUser = JSON.parse(localStorage.getItem("currentuser"));
+  useEffect(() => {
+    let currentUser = JSON.parse(localStorage.getItem("currentuser"));
 
-  //   if (currentUser) {
-  //     setisLoggedIn(true);
-  //     setUser(currentUser);
-  //   }
-  //   if (state?.user) {
-  //     setUser(state?.user);
-  //   } else {
-  //     setUser({});
-  //   }
-  // }, [state]);
+    if (currentUser) {
+      setisLoggedIn(true);
+      setUser(currentUser);
+    }
+    if (state?.user) {
+      setUser(state?.user);
+    } else {
+      setUser({});
+    }
+  }, [state]);
 
   function openRegisterModal() {
     setRegisterModal(true);
@@ -56,31 +56,6 @@ const Navbar = () => {
   }
 
   return (
-    // <nav>
-    //   <div id="logo">
-    //     <h2 onClick={() => route("/")}>Shopping</h2>
-    //   </div>
-
-    //   <h3 onClick={() => route("/multipleproducts")}>Products</h3>
-    //   {state?.user ? (
-    //     <div id="rightNav">
-    //       {isLoggedIn ? (
-    //         <Link className="profLink" to="/profile">
-    //           <h3> {user.userName}</h3>
-    //         </Link>
-    //       ) : (
-    //         <Link to="/profile">
-    //           <h3>Profile</h3>
-    //         </Link>
-    //       )}
-    //       <button onClick={logout}>Logout</button>
-    //       <h3 onClick={() => route("/cart")}>cart</h3>
-    //     </div>
-    //   ) : (
-    //     <button onClick={() => route("/login")}>Login</button>
-    //   )}
-    // </nav>
-
     <nav>
       {registerModal && (
         <div className="registerContainerScreen">
@@ -108,7 +83,19 @@ const Navbar = () => {
           onMouseLeave={() => setDropDown(false)}
           className="profileDropDown"
         >
-          <button onClick={logout}>Logout</button>
+          <div>
+            <h4>My Profile</h4>
+          </div>
+
+          <div>
+            <h4>My Orders</h4>
+          </div>
+          <div>
+            <h4>My Account</h4>
+          </div>
+          <div>
+            <button onClick={logout}>Logout</button>
+          </div>
         </div>
       ) : null}
 
@@ -144,6 +131,7 @@ const Navbar = () => {
 
             {state?.user ? (
               <h4
+                className="username"
                 onClick={openRegisterModal}
                 onMouseOver={openProfileDropDown}
                 onMouseLeave={() => setDropDown(false)}

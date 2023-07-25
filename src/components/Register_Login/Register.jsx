@@ -6,7 +6,6 @@ const Register = ({ hideRegisterModal, openLoginModal, setLoginModal }) => {
   const [data, setData] = useState({
     userName: "",
     email: "",
-    // date: "",
     password: "",
     cPassword: "",
     cart: [],
