@@ -1,0 +1,92 @@
+.registerMainContainer {
+  width: 25%;
+  height: 100%;
+  background-color: white;
+  position: fixed;
+  right: 0;
+  animation: register 0.5s;
+}
+
+@keyframes register {
+  0% {
+    right: -400px;
+  }
+  100% {
+    right: 0%;
+  }
+}
+
+.header {
+  height: 30%;
+  background-color: black;
+  color: white;
+  position: relative;
+}
+
+.registerHeading {
+  position: absolute;
+  bottom: 10%;
+  left: 5%;
+  font-size: 1.5em;
+}
+
+.skipBtn {
+  position: absolute;
+  top: 12%;
+  right: 10%;
+  color: white;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 1.2em;
+}
+.skipBtn:hover {
+  color: aqua;
+}
+
+/* registerFormContainer */
+
+.registerFormContainer {
+  width: 90%;
+  margin: auto;
+}
+.registerFormContainer > div {
+  width: 100%;
+  margin: 3% 0;
+}
+.registerFormContainer > div > input {
+  width: 100%;
+  border: none;
+  height: 45px;
+  padding-left: 2%;
+  border-bottom: 1px solid grey;
+  font-size: 0.9em;
+  outline: none;
+}
+
+.submitBtn {
+  width: 100%;
+}
+
+.submitBtn > button {
+  margin-top: 5%;
+  width: 100%;
+  height: 45px;
+  border: none;
+  background-color: black;
+  color: white;
+  font-weight: bolder;
+  font-size: 1.2em;
+}
+
+.alreadyUser {
+  text-align: center;
+}
+
+.bottomSectionForm {
+  text-align: center;
+  text-decoration: none;
+  color: black;
+}
+.bottomSectionForm > span {
+  color: blue;
+}

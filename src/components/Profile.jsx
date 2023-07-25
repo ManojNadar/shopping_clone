@@ -25,7 +25,7 @@ const Profile = () => {
     const regUser = JSON.parse(localStorage.getItem("Users"));
     if (currentuser && regUser) {
       for (var i = 0; i < regUser.length; i++) {
-        if (regUser[i].email == currentuser.email) {
+        if (regUser[i].email === currentuser.email) {
           setUserData(regUser[i]);
         }
       }

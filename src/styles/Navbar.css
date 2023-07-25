@@ -1,0 +1,171 @@
+nav {
+  width: 100%;
+  height: 23%;
+  border-bottom: 1px solid rgb(221, 221, 221);
+}
+/* Top Nav */
+
+.topNav {
+  width: 100%;
+  height: 33%;
+  /* border-bottom: 1px solid red; */
+  display: flex;
+  justify-content: space-around;
+}
+
+.topLeftNav {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 25%;
+  font-size: 0.84em;
+  color: grey;
+  font-weight: bolder;
+  /* border: 1px solid blue; */
+}
+
+.topCenterNav {
+  width: 20%;
+  height: 100%;
+  /* border: 1px solid blue; */
+}
+
+.centerLogoImg {
+  width: 100%;
+  height: 100%;
+}
+.centerLogoImg > img {
+  width: 100%;
+  height: 100%;
+  /* height: 80%; */
+}
+
+.topRightNav {
+  width: 30%;
+  display: flex;
+  align-items: center;
+  /* border: 1px solid blue; */
+}
+
+.searchContainer {
+  position: relative;
+  width: 55%;
+  height: 100%;
+  margin-top: 2.5%;
+}
+.searchContainer > input {
+  height: 70%;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid grey;
+  padding-left: 2%;
+  font-size: 0.95em;
+  outline: none;
+}
+
+.fa-magnifying-glass {
+  position: absolute;
+  right: 5%;
+  top: 35%;
+}
+
+.allIconsContainer {
+  width: 35%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  /* border: 1px solid red; */
+}
+
+.bagIcon {
+  font-size: 1.7em;
+}
+
+/* Center Nav */
+
+.centerNav {
+  width: 100%;
+  height: 33%;
+  /* border-bottom: 1px solid red; */
+}
+
+.centerMiddleNavigation {
+  width: 45%;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  /* border: 1px solid red; */
+}
+.centerMiddleNavigation > .centerNavigations {
+  width: 23%;
+  text-align: center;
+  padding-top: 2%;
+  height: 100%;
+}
+.centerMiddleNavigation > .centerNavigations:nth-child(1) {
+  border-bottom: 2px solid red;
+}
+
+.centerNavigations {
+  text-decoration: none;
+  color: black;
+  font-weight: bolder;
+}
+
+#luxe {
+  color: #d6ae5c;
+  text-decoration: none;
+  font-weight: bolder;
+}
+
+/* Bottom Nav */
+
+.bottomNav {
+  width: 100%;
+  height: 33%;
+}
+
+.bottomNavigations {
+  width: 70%;
+  height: 100%;
+  margin: auto;
+  /* border: 1px solid green; */
+  display: flex;
+  justify-content: space-around;
+}
+
+.allCategoriesNav {
+  text-decoration: none;
+  color: black;
+  padding-top: 2%;
+}
+
+/* registerConatinerscreen */
+
+.registerContainerScreen {
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  right: 0;
+  z-index: 99;
+}
+.loginContainerScreen {
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  right: 0;
+  z-index: 110;
+}
+
+.profileDropDown {
+  width: 20%;
+  height: 200px;
+  background-color: grey;
+  position: absolute;
+  right: 8%;
+  top: 5%;
+  z-index: 85;
+}

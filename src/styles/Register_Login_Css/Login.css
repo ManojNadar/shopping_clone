@@ -1,0 +1,17 @@
+.loginMainContainer {
+  width: 25%;
+  height: 100%;
+  background-color: white;
+  position: fixed;
+  right: 0;
+  animation: register 0.5s;
+}
+
+@keyframes register {
+  0% {
+    right: -400px;
+  }
+  100% {
+    right: 0%;
+  }
+}
