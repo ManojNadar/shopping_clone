@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "../../styles/Register_Login_Css/Register.css";
 const Register = ({ hideRegisterModal, openLoginModal, setLoginModal }) => {
-  const route = useNavigate();
   const [data, setData] = useState({
     userName: "",
     email: "",

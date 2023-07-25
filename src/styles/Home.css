@@ -1,0 +1,36 @@
+.homeBodyContainer {
+  width: 90%;
+  margin: 0 auto;
+  /* border: 1px solid red; */
+  margin-top: 1%;
+}
+
+.bannerheading {
+  margin-top: 2%;
+  width: 100%;
+  height: 140px;
+}
+.bannerheading > img {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.saleBanner {
+  width: 100%;
+  margin-top: 2%;
+}
+.saleBanner > img {
+  width: 100%;
+}
+
+.fourFlex {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.fourFlexImgContainer {
+  width: 22%;
+}

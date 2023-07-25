@@ -1,0 +1,47 @@
+.footerMainContainer {
+  width: 100%;
+  /* border: 1px solid red; */
+  background-color: #ececec;
+  padding-bottom: 1%;
+}
+
+.footerOne {
+  padding-top: 1%;
+  width: 100%;
+}
+
+.footerOneTop {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.footerOneTopLeft {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 50%;
+  text-align: center;
+}
+
+.footerOneTopRight {
+  width: 40%;
+  padding-top: 1%;
+}
+.footerOneTopRight > select {
+  width: 80%;
+  height: 35px;
+}
+.footerOneTopRight > select > option {
+  background-color: black;
+  color: white;
+}
+
+/*  */
+
+.footerOneBottom {
+  display: flex;
+  width: 60%;
+  margin: 0 auto;
+  border: 1px solid red;
+}
