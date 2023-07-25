@@ -30,6 +30,11 @@
   font-size: 1.5em;
 }
 
+.registerHeading > p {
+  font-size: 0.6em;
+  padding-top: 5%;
+}
+
 .skipBtn {
   position: absolute;
   top: 12%;
@@ -46,12 +51,16 @@
 /* registerFormContainer */
 
 .registerFormContainer {
-  width: 90%;
-  margin: auto;
+  width: 70%;
+  margin: 13% auto 5% auto;
+  border: 2px solid black;
+  padding: 5% 0;
+  box-shadow: 7px 7px 5px grey;
+  border-radius: 15px;
 }
 .registerFormContainer > div {
-  width: 100%;
-  margin: 3% 0;
+  width: 80%;
+  margin: 3% auto;
 }
 .registerFormContainer > div > input {
   width: 100%;
@@ -76,6 +85,7 @@
   color: white;
   font-weight: bolder;
   font-size: 1.2em;
+  border-radius: 15px;
 }
 
 .alreadyUser {

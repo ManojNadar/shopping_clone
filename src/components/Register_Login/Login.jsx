@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { MyContext } from "../../Context/ContextContainer";
 import "../../styles/Register_Login_Css/Login.css";
+import { BiLogoFacebookCircle } from "react-icons/bi";
+import { FcGoogle } from "react-icons/fc";
 
 const Login = ({ hideLoginModal, hideRegisterModal }) => {
   const { login } = useContext(MyContext);
@@ -71,7 +73,7 @@ const Login = ({ hideLoginModal, hideRegisterModal }) => {
         <div className="header">
           <div className="registerHeading">
             <h2>Login here</h2>
-            <p>for a tailored experience</p>
+            <p>for a tailored experience...</p>
           </div>
           <h4 onClick={hideLoginModal} className="skipBtn">
             Close
@@ -116,6 +118,15 @@ const Login = ({ hideLoginModal, hideRegisterModal }) => {
           <NavLink className="bottomSectionForm">
             New User ? <span onClick={hideLoginModal}> Register Here</span>
           </NavLink>
+        </div>
+
+        <div className="fbGoogle">
+          <div>
+            <BiLogoFacebookCircle />
+          </div>
+          <div>
+            <FcGoogle />
+          </div>
         </div>
       </div>
     </>

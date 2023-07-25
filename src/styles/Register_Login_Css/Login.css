@@ -15,3 +15,16 @@
     right: 0%;
   }
 }
+
+.fbGoogle {
+  /* border: 1px solid red; */
+  width: 25%;
+  margin: 5% auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+.fbGoogle > div {
+  font-size: 2em;
+  cursor: pointer;
+}

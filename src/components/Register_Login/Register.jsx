@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "../../styles/Register_Login_Css/Register.css";
+import { BiLogoFacebookCircle } from "react-icons/bi";
+import { FcGoogle } from "react-icons/fc";
+
 const Register = ({ hideRegisterModal, openLoginModal, setLoginModal }) => {
   const [data, setData] = useState({
     userName: "",
@@ -86,7 +89,7 @@ const Register = ({ hideRegisterModal, openLoginModal, setLoginModal }) => {
         <div className="header">
           <div className="registerHeading">
             <h2>Registration</h2>
-            <p>for a tailored experience</p>
+            <p>for a tailored experience....</p>
           </div>
           <h4 className="skipBtn" onClick={hideRegisterModal}>
             skip
@@ -150,6 +153,15 @@ const Register = ({ hideRegisterModal, openLoginModal, setLoginModal }) => {
             </NavLink>
           </div>
         </form>
+
+        <div className="fbGoogle">
+          <div>
+            <BiLogoFacebookCircle />
+          </div>
+          <div>
+            <FcGoogle />
+          </div>
+        </div>
       </div>
     </>
   );
