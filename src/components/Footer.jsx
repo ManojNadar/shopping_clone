@@ -46,9 +46,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="footerTwo">
-            
-        </div>
+        <div className="footerTwo"></div>
       </div>
     </>
   );
