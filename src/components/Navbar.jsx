@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { MyContext } from "../Context/ContextContainer";
 import { NavLink } from "react-router-dom";
 import "../styles/Navbar.css";
@@ -13,7 +13,6 @@ const Navbar = () => {
 
   const [dropDown, setDropDown] = useState(false);
 
-  const [isLoggedIn, setisLoggedIn] = useState(false);
   const [user, setUser] = useState({});
   const route = useNavigate();
   const { state, logout } = useContext(MyContext);
