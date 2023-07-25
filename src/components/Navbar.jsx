@@ -125,7 +125,6 @@ const Navbar = () => {
             <i className="fa-regular fa-heart fa-xl"></i>
 
             <div className="bagIcon">
-              {/* <i className="fa-solid fa-bag-shopping fa-xl"></i> */}
               <BiShoppingBag />
             </div>
 
