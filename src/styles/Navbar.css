@@ -107,6 +107,10 @@ nav {
   padding-top: 2%;
   height: 100%;
 }
+.centerMiddleNavigation > .centerNavigations:hover {
+  /* text-decoration: underline; */
+  border-bottom: 2px solid red;
+}
 .centerMiddleNavigation > .centerNavigations:nth-child(1) {
   border-bottom: 2px solid red;
 }
@@ -144,6 +148,11 @@ nav {
   text-decoration: none;
   color: black;
   padding-top: 2%;
+  width: 12%;
+  text-align: center;
+}
+.allCategoriesNav:hover {
+  border-bottom: 2px solid black;
 }
 
 /* registerConatinerscreen */

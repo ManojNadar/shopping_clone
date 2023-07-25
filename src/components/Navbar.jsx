@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { MyContext } from "../Context/ContextContainer";
 import { NavLink } from "react-router-dom";
 import "../styles/Navbar.css";
@@ -10,11 +10,11 @@ import Login from "./Register_Login/Login";
 const Navbar = () => {
   const [registerModal, setRegisterModal] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
-
+  const [isLoggedIN, setisLoggedIn] = useState(false);
   const [dropDown, setDropDown] = useState(false);
 
   const [user, setUser] = useState({});
-  const route = useNavigate();
+  // const route = useNavigate();
   const { state, logout } = useContext(MyContext);
 
   // // console.log(state);
