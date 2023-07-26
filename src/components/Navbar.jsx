@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 // import { useNavigate } from "react-router-dom";
 import { MyContext } from "../Context/ContextContainer";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "../styles/Navbar.css";
 import { BiShoppingBag } from "react-icons/bi";
 import Register from "./Register_Login/Register";
@@ -14,7 +14,7 @@ const Navbar = () => {
   const [dropDown, setDropDown] = useState(false);
 
   const [user, setUser] = useState({});
-  // const route = useNavigate();
+  const route = useNavigate();
   const { state, logout } = useContext(MyContext);
 
   // // console.log(state);
@@ -110,6 +110,7 @@ const Navbar = () => {
           <div className="topCenterNav">
             <div className="centerLogoImg">
               <img
+                onClick={() => route("/")}
                 src="https://prodstatic.shoppersstop.com/_ui/updated_path/images/shopperstopimgaes_web/rectangle_logo_black.svg"
                 alt=""
               />
@@ -152,7 +153,9 @@ const Navbar = () => {
 
       <div className="centerNav">
         <div className="centerMiddleNavigation">
-          <NavLink className="centerNavigations">CATEGORIES</NavLink>
+          <NavLink to="/multipleproducts" className="centerNavigations">
+            CATEGORIES
+          </NavLink>
           <NavLink className="centerNavigations" id="luxe">
             LUXE
           </NavLink>

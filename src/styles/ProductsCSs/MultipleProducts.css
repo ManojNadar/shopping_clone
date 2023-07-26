@@ -1,0 +1,137 @@
+#topSectionMulProducts {
+  width: 90%;
+  margin: 0 auto;
+  /* border: 1px solid red; */
+}
+#topSectionMulProducts > p {
+  width: 20%;
+  /* border: 1px solid pink; */
+  margin: 2% 0;
+}
+#topSectionMulProducts > h2 {
+  margin: 2% 0;
+  padding-left: 28%;
+  color: grey;
+}
+#topSectionMulProducts > div {
+  margin: 2% 0;
+  padding-left: 50%;
+  height: 25px;
+}
+#topSectionMulProducts > div > select {
+  width: 35%;
+  height: 100%;
+  color: grey;
+}
+
+/* filter section */
+
+.multipleProductsLeftSection {
+  width: 20%;
+  /* border: 1px solid blue; */
+}
+
+.filterHeader {
+  width: 100%;
+  /* border-top: 1px solid grey; */
+  display: flex;
+  justify-content: space-between;
+
+  padding: 5% 5% 0 4%;
+}
+
+.checkboxContainer {
+  width: 100%;
+  overflow-y: scroll;
+  height: 200px;
+  border-bottom: 1px solid rgb(193, 193, 193);
+  padding-bottom: 3%;
+}
+
+.checkboxContainer::-webkit-scrollbar {
+  width: 0.4em;
+  background-color: black;
+}
+::-webkit-scrollbar-thumb {
+  background-color: grey;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: red;
+}
+
+.singleCheckbox {
+  display: flex;
+  width: 100%;
+  padding-top: 9%;
+}
+.singleCheckbox > p {
+  font-size: 0.8em;
+  padding-left: 4%;
+  font-weight: bolder;
+}
+
+.filterBtn {
+  width: 100%;
+  height: 35px;
+  margin-top: 5%;
+}
+
+.filterBtn > button {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  color: white;
+  font-weight: bolder;
+  border: none;
+}
+
+/* multiple product sections */
+
+.multipleProductsContainer {
+  width: 90%;
+  margin: 0 auto;
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: space-between;
+}
+
+#mainProductsContainer {
+  width: 75%;
+  /* border: 1px solid purple; */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 45px 0;
+}
+
+#singleproduct {
+  width: 22%;
+  height: 450px;
+  margin-left: 3%;
+  border: 1px solid rgb(214, 214, 214);
+  box-shadow: 2px 5px 8px grey;
+}
+#singleproductImg {
+  width: 90%;
+  height: 65%;
+  margin: 0 auto;
+  /* border: 1px solid orange; */
+}
+#singleproductImg > img {
+  width: 100%;
+  height: 100%;
+}
+
+#prodDetails {
+  /* border: 1px solid brown; */
+  padding-top: 5%;
+  padding-left: 5%;
+}
+
+#prodPrice {
+  font-weight: bolder;
+  padding-top: 2%;
+}
+
+#prodCategory {
+  padding-top: 5%;
+}

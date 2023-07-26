@@ -34,3 +34,21 @@
 .fourFlexImgContainer {
   width: 22%;
 }
+
+/* sticky */
+
+.homeSideSticky {
+  background-color: black;
+  width: 12%;
+  height: 25px;
+  padding-top: 0.3%;
+  text-align: center;
+  color: white;
+  border-top-right-radius: 50px;
+  border-top-left-radius: 50px;
+  transform: rotate(-90deg);
+  position: fixed;
+  right: -5.1%;
+  top: 70%;
+  font-size: 0.85em;
+}

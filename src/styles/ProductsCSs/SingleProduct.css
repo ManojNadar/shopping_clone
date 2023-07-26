@@ -1,0 +1,144 @@
+#singlProductHeader {
+  width: 85%;
+  margin: 0 auto;
+  margin-top: 1%;
+  color: grey;
+}
+
+#mainSingleProdContainer {
+  width: 85%;
+  margin: 3% auto;
+  display: flex;
+}
+
+#singleProdContainer {
+  width: 60%;
+  display: flex;
+  justify-content: space-around;
+  /* border: 1px solid red; */
+}
+
+.singleImgContainer {
+  width: 40%;
+}
+.singleImgContainer > img {
+  width: 100%;
+}
+
+#singleProdDetails {
+  width: 35%;
+}
+
+.singleProdDesc {
+  margin-top: 3%;
+}
+.singleProdPrice {
+  margin-top: 3%;
+}
+.singleProdCat {
+  margin-top: 3%;
+}
+
+.sizeChartsHeading {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4%;
+}
+.sizeChartsHeading > p {
+  font-weight: bolder;
+}
+.sizeChartsHeading > p:nth-child(2) {
+  font-size: 0.8em;
+  text-decoration: underline;
+}
+
+.sizeCharts {
+  width: 75%;
+  height: 40px;
+  margin-top: 3%;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+.sizeCharts > div {
+  width: 22%;
+  border-radius: 50px;
+  border: 1px solid black;
+  padding-top: 3%;
+}
+
+.return {
+  margin-top: 5%;
+  background-color: #f1efef;
+  text-align: center;
+  border-radius: 25px;
+}
+
+.shareHeart {
+  /* border: 1px solid red; */
+  margin-top: 7%;
+  display: flex;
+  align-items: center;
+  width: 70%;
+  justify-content: space-evenly;
+}
+.shareHeart > div {
+  text-align: center;
+  padding-top: 1.5%;
+  font-size: 1.5em;
+  background-color: #ececec;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-top: 2.2%;
+}
+
+.addToCart {
+  width: 60%;
+  border: none;
+  background-color: black;
+  color: white;
+  font-weight: bolder;
+  height: 3em;
+  margin-top: 2%;
+}
+
+.authSecure {
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border: 1px solid rgb(235, 232, 232);
+  margin: 5% 0;
+}
+.authSecure > div {
+  width: 27%;
+  padding: 4% 0;
+}
+
+.similarProdHeading {
+  text-align: center;
+  margin: 2% 0;
+  font-weight: 5;
+  font-size: 2.2em;
+  font-style: italic;
+  color: grey;
+}
+#similarProductContainer {
+  width: 85%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.similarProductImgContainer {
+  width: 18%;
+}
+.similarProdImg {
+  width: 100%;
+}
+.similarProdImg > img {
+  width: 100%;
+}

@@ -28,26 +28,11 @@ const Home = () => {
     <>
       <Navbar />
 
-      {/* <div style={{ textAlign: "center", marginTop: "2%" }}>
-        {state?.user?.email ? (
-          <button onClick={() => logout()}>Logout</button>
-        ) : (
-          <button onClick={() => route("/login")}>Login</button>
-        )}
-      </div>
-
-      <div id="homeHeader">
-        <h2>Welcome to Shopping </h2>
-      </div>
-
-      <div id="homebanner">
-        <img
-          src="https://img.freepik.com/free-photo/female-friends-out-shopping-together_53876-25041.jpg?w=2000"
-          alt=""
-        />
-      </div> */}
-
       {/* Home Body section */}
+
+      <div className="homeSideSticky">
+        <p>Recently Viewed</p>
+      </div>
 
       <div className="homeBodyContainer">
         <div className="bannerheading">

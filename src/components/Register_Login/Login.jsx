@@ -55,7 +55,7 @@ const Login = ({ hideLoginModal, hideRegisterModal }) => {
 
       if (flag) {
         alert("login success");
-        route("/");
+        // route("/");
         login(currentUser);
         hideLoginModal();
         hideRegisterModal();
