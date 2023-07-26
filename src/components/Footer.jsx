@@ -1,5 +1,12 @@
 import React from "react";
 import "../styles/Footer.css";
+import { NavLink } from "react-router-dom";
+import apple from "../Assets/applestore.png";
+import google from "../Assets/googleplaystore.png";
+
+import fb from "../Assets/fblogo.png";
+import insta from "../Assets/instalogo.png";
+import twitter from "../Assets/twitterlogo.png";
 const Footer = () => {
   return (
     <>
@@ -46,7 +53,48 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="footerTwo"></div>
+        <div className="footerTwo">
+          <div className="footerTwoLeft">
+            <h5>REACH US</h5>
+            <p>
+              For Any Query Please Email Us <br />
+              questions?
+            </p>
+
+            <NavLink className="customerLink">
+              <p>customercare@shoppersstop.com</p>
+            </NavLink>
+          </div>
+          <div className="footerTwoCenter">
+            <h5>DOWNLOAD THE APP ON</h5>
+            <div className="footerTwoCenterImg">
+              <div>
+                <img src={google} alt="" />
+              </div>
+              <div>
+                <img src={apple} alt="" />
+              </div>
+            </div>
+          </div>
+          <div className="footerTwoRight">
+            <h5>FOLLOW US ON</h5>
+            <div className="socialIconsContainer">
+              <div>
+                <img src={fb} alt="" />
+              </div>
+              <div>
+                <img src={insta} alt="" />
+              </div>
+              <div>
+                <img src={twitter} alt="" />
+              </div>
+            </div>
+          </div>
+
+          <div className="footerTwoRightLast">
+            <p> copyright @2023 shoppingstop5@gmail.com</p>
+          </div>
+        </div>
       </div>
     </>
   );

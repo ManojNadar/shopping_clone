@@ -11,7 +11,8 @@
 }
 
 .footerOneTop {
-  width: 100%;
+  width: 85%;
+  margin: 0 auto;
   display: flex;
   justify-content: space-around;
 }
@@ -22,6 +23,15 @@
   justify-content: space-around;
   width: 50%;
   text-align: center;
+}
+.footerOneTopLeft > div {
+  width: 22%;
+}
+.footerOneTopLeft > div > p {
+  font-size: 0.85em;
+}
+.footerOneTopLeft > div > img {
+  width: 20%;
 }
 
 .footerOneTopRight {
@@ -39,9 +49,72 @@
 
 /*  */
 
-.footerOneBottom {
+.footerTwo {
+  display: flex;
+  width: 65%;
+  margin: 0 auto;
+  border-top: 1px solid rgb(206, 206, 206);
+  margin-top: 1%;
+  padding-top: 1%;
+}
+
+.footerTwoLeft {
+  width: 25%;
+}
+
+.footerTwoLeft > p {
+  font-size: 0.8em;
+  color: grey;
+  margin-top: 2%;
+}
+
+.customerLink > p {
+  margin-top: 3%;
+  color: red;
+}
+
+.footerTwoCenter {
+  width: 25%;
+
+  /* border: 1px solid blue; */
+}
+.footerTwoCenter > h5 {
+  padding-left: 2%;
+}
+
+.footerTwoCenterImg {
   display: flex;
   width: 60%;
-  margin: 0 auto;
-  border: 1px solid red;
+  justify-content: space-between;
+  margin-top: 2%;
+}
+.footerTwoCenterImg > div {
+  /* border: 1px solid blue; */
+  width: 49%;
+}
+.footerTwoCenterImg > div > img {
+  width: 100%;
+}
+
+.footerTwoRight {
+  width: 25%;
+}
+
+.socialIconsContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 35%;
+  margin-top: 3%;
+}
+.socialIconsContainer > div {
+  width: 25%;
+}
+.socialIconsContainer > div > img {
+  width: 100%;
+}
+
+.footerTwoRightLast > p {
+  font-size: 0.85em;
+  color: grey;
+  font-weight: bolder;
 }
