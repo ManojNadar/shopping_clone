@@ -1,4 +1,5 @@
 import { createContext, useEffect, useReducer } from "react";
+import { toast } from "react-toastify";
 
 export const MyContext = createContext();
 const initialState = { user: null };

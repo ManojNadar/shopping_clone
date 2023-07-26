@@ -163,7 +163,7 @@ nav {
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
   right: 0;
-  z-index: 99;
+  z-index: 999;
 }
 
 .loginContainerScreen {
@@ -171,7 +171,7 @@ nav {
   height: 100vh;
   position: fixed;
   right: 0;
-  z-index: 110;
+  z-index: 1111;
 }
 
 /* dropdown */
