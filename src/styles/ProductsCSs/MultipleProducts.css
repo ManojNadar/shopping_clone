@@ -135,3 +135,12 @@
 #prodCategory {
   padding-top: 5%;
 }
+
+/* Loading */
+.loader {
+  width: 100%;
+}
+.loader > div {
+  width: 20%;
+  margin: 0 auto;
+}

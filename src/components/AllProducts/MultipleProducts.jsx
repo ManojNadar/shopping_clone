@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Navbar";
 import "../../styles/ProductsCSs/MultipleProducts.css";
-import { AiOutlineUp } from "react-icons/ai";
+import { AiOutlineSearch, AiOutlineUp } from "react-icons/ai";
+import loader from "../../Assets/spinner.gif";
 
 const MultipleProducts = () => {
   const [product, setProduct] = useState([]);
+  const [filterProduct, setFilterProduct] = useState([]);
+  const [query, setQuery] = useState("");
   const router = useNavigate();
 
   const url = "https://fakestoreapi.com/products";
@@ -17,11 +20,28 @@ const MultipleProducts = () => {
     const response = await fetchdata.json();
     // console.log(response);
     setProduct(response);
+    setFilterProduct(response);
   }
 
   useEffect(() => {
     fetchproduct();
   }, []);
+
+  function handleSearchInput(e) {
+    const prodSearch = e.target.value;
+    setQuery(prodSearch);
+    // console.log(prodSearch);
+
+    if (prodSearch.length > 0) {
+      const searchData = product.filter((item) =>
+        item.title.toLowerCase().includes(prodSearch)
+      );
+
+      setProduct(searchData);
+    } else {
+      setProduct(filterProduct);
+    }
+  }
   return (
     <>
       <Navbar />
@@ -29,7 +49,7 @@ const MultipleProducts = () => {
       <div id="topSectionMulProducts">
         <p>Home Offers / All Offer / Products</p>
         <h2>All Categories</h2>
-        <div>
+        <div style={{ position: "relative" }}>
           <select>
             <option>SORT BY : DISCOUNT</option>
             <option>RELEVANCE</option>
@@ -37,6 +57,23 @@ const MultipleProducts = () => {
             <option>NEW</option>
             <option>DISCOUNT</option>
           </select>
+
+          <div style={{ position: "absolute", right: "6%", top: "20%" }}>
+            <AiOutlineSearch />
+          </div>
+
+          <input
+            style={{
+              marginLeft: "3%",
+              height: "25px",
+              width: "350px",
+              paddingLeft: "1%",
+            }}
+            type="text"
+            placeholder="search product"
+            value={query}
+            onChange={handleSearchInput}
+          />
         </div>
       </div>
 
@@ -142,8 +179,6 @@ const MultipleProducts = () => {
             </div>
           </div>
 
-          
-
           <div className="filterBtn">
             <button>REFINE SEARCH</button>
           </div>
@@ -171,8 +206,10 @@ const MultipleProducts = () => {
               </div>
             ))
           ) : (
-            <div id="loading">
-              <div className="inner">Loading.....</div>
+            <div className="loader">
+              <div>
+                <img src={loader} alt="" />
+              </div>
             </div>
           )}
         </div>

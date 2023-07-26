@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { MyContext } from "../../Context/ContextContainer";
 import "../../styles/Register_Login_Css/Login.css";
 import { BiLogoFacebookCircle } from "react-icons/bi";
@@ -13,8 +13,6 @@ const Login = ({ hideLoginModal, hideRegisterModal }) => {
     loginEmail: "",
     loginPassword: "",
   });
-
-  const route = useNavigate();
 
   const handleLoginChange = (e) => {
     const name = e.target.name;

@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Navbar";
 import "../../styles/ProductsCSs/SingleProduct.css";
 import { AiOutlineShareAlt, AiOutlineHeart } from "react-icons/ai";
+import { MyContext } from "../../Context/ContextContainer";
 
 const SingleProduct = () => {
   const [isLoggedIn, setisLoggedIn] = useState(false);
@@ -11,7 +12,7 @@ const SingleProduct = () => {
   const [singleData, setSingleData] = useState([]);
   const [singleProd, setSingleProd] = useState({});
   const { id } = useParams();
-
+  const { state } = useContext(MyContext);
   const route = useNavigate();
 
   useEffect(() => {
@@ -44,14 +45,11 @@ const SingleProduct = () => {
 
       for (let i = 0; i < registeredUser.length; i++) {
         if (registeredUser[i].email === currentEmail) {
-          if (registeredUser[i].cart.length) {
-            registeredUser[i].cart.find((elem) => elem.id != id);
-            registeredUser[i].cart.push(singleProd);
-            localStorage.setItem("userdata", JSON.stringify(registeredUser));
-            return;
-          } else {
-            alert("product already added");
-          }
+          registeredUser[i].cart.push(singleProd);
+          localStorage.setItem("userdata", JSON.stringify(registeredUser));
+          return;
+        } else {
+          alert("product already added");
         }
       }
     }
@@ -105,7 +103,7 @@ const SingleProduct = () => {
             <div>
               <AiOutlineHeart />
             </div>
-            {isLoggedIn ? (
+            {state?.user ? (
               <button
                 className="addToCart"
                 onClick={() => addToCart(singleProd.id)}
