@@ -49,7 +49,7 @@ const MultipleProducts = () => {
       <div id="topSectionMulProducts">
         <p>Home Offers / All Offer / Products</p>
         <h2>All Categories</h2>
-        <div style={{ position: "relative" }}>
+        <div style={{ position: "relative", zIndex: 0 }}>
           <select>
             <option>SORT BY : DISCOUNT</option>
             <option>RELEVANCE</option>
@@ -68,6 +68,7 @@ const MultipleProducts = () => {
               height: "25px",
               width: "350px",
               paddingLeft: "1%",
+              zIndex: 0,
             }}
             type="text"
             placeholder="search product"

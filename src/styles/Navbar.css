@@ -5,6 +5,7 @@ nav {
   position: fixed;
   top: 0;
   background-color: white;
+  z-index: 99;
 }
 /* Top Nav */
 
@@ -171,7 +172,7 @@ nav {
   height: 100vh;
   position: fixed;
   right: 0;
-  z-index: 1111;
+  z-index: 9991;
 }
 
 /* dropdown */

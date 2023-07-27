@@ -39,7 +39,7 @@ const SingleProduct = () => {
     }
   }, []);
 
-  function addToCart(id) {
+  function addToCart() {
     if (isLoggedIn) {
       let registeredUser = JSON.parse(localStorage.getItem("userdata"));
 
@@ -47,9 +47,6 @@ const SingleProduct = () => {
         if (registeredUser[i].email === currentEmail) {
           registeredUser[i].cart.push(singleProd);
           localStorage.setItem("userdata", JSON.stringify(registeredUser));
-          return;
-        } else {
-          alert("product already added");
         }
       }
     }

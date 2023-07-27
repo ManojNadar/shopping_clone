@@ -125,7 +125,7 @@ const Navbar = () => {
             <div className="allIconsContainer">
               <i className="fa-regular fa-heart fa-xl"></i>
 
-              <div className="bagIcon">
+              <div className="bagIcon" onClick={() => route("/cart")}>
                 <BiShoppingBag />
               </div>
 

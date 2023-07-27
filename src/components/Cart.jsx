@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Navbar from "./Navbar";
+import "../styles/Cart.css";
+import { MyContext } from "../Context/ContextContainer";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
 
   const [totalPrice, setTotalPrice] = useState(0);
+
+  const { state } = useContext(MyContext);
 
   // console.log(cartItems);
   useEffect(() => {
@@ -29,15 +33,13 @@ const Cart = () => {
         if (regUsers[i].email === currentuser.email) {
           regUsers[i].cart.splice(id, 1);
           setCartItems(regUsers[i].cart);
-
+          setTotalPrice(0);
           localStorage.setItem("userdata", JSON.stringify(regUsers));
         }
       }
     }
 
     // alert("product removed");
-
-    window.location.reload();
 
     // console.log(id);
   };
@@ -66,6 +68,7 @@ const Cart = () => {
       }
       localStorage.setItem("userdata", JSON.stringify(reguser));
       setCartItems([]);
+      setTotalPrice(0);
       // window.location.reload();
     }
     alert("Product will deliver soon, Thank you for shopping.");
@@ -73,37 +76,82 @@ const Cart = () => {
   return (
     <>
       <Navbar />
-      <h2 className="header">My Cart</h2>
-      <h1 style={{ color: "blue", fontWeight: "bolder", paddingLeft: "20px" }}>
-        Total Price : {totalPrice}$
-      </h1>
-      {cartItems.length ? (
-        <div className="buyProd">
-          <button onClick={buyProduct}>Buy Product</button>
-        </div>
-      ) : null}
 
-      <div className="cartContainer">
-        {cartItems.length ? (
-          cartItems.map((e, index) => (
-            <div className="proContainer" key={e.id}>
-              <img src={e.image} alt="" />
-              <h3>Brand : {e.title}</h3>
-              <h4>Rs.{e.price}</h4>
-              {/* <h4>{e.description.slice(0, 100)}...</h4> */}
-              <button onClick={() => removeSingleItem(index)}>
-                Remove from Cart
-              </button>
+      {state?.user ? (
+        <div className="cartBody">
+          <div className="MainCartSection">
+            <div className="cartContainer">
+              {cartItems.length ? (
+                cartItems.map((e, index) => (
+                  <div className="proContainer" key={e.id}>
+                    <div className="imgSection">
+                      <img src={e.image} alt="" />
+                    </div>
+
+                    <div className="cartDetails">
+                      <h3>{e.title}</h3>
+                      <h4>Rs.{e.price}</h4>
+                      <h4 className="cartDesc">
+                        {e.description.slice(0, 100)}...
+                      </h4>
+                      <button onClick={() => removeSingleItem(index)}>
+                        Remove
+                      </button>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div
+                  style={{
+                    width: "100%",
+                    textAlign: "center",
+                    marginTop: "5%",
+                  }}
+                >
+                  <h1>Your Cart is Empty</h1>
+                </div>
+              )}
             </div>
-          ))
-        ) : (
-          <div style={{ width: "100%", textAlign: "center" }}>
-            <h1>Your Cart is Empty</h1>
-          </div>
-        )}
 
-        {/* {cartItems.length < 0 && <h2>Your Cart is Empty</h2>} */}
-      </div>
+            {cartItems.length < 1 ? null : (
+              <div className="totalPriceDetailsContainer">
+                <h2>Order Summary</h2>
+                <div className="summaryPrice">
+                  <div className="totalText">
+                    <p>Sub total</p>
+                    <p>Rs.{totalPrice}</p>
+                  </div>
+                  <div className="totalText">
+                    <p>Delivery charges*</p>
+                    <p>Free</p>
+                  </div>
+                  <div className="totalText">
+                    <p>Offer discount</p>
+                    <p>Rs.{totalPrice}</p>
+                  </div>
+                  <div className="totalText">
+                    <p>Coupon discount</p>
+                    <p>APPLY COUPON</p>
+                  </div>
+
+                  <div className="mainTotalPrice">
+                    <h2>Total Price : {totalPrice}$</h2>
+                  </div>
+                  {cartItems.length ? (
+                    <div className="buyProd">
+                      <button onClick={buyProduct}>CHECKOUT</button>
+                    </div>
+                  ) : null}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      ) : (
+        <div style={{ width: "100%", textAlign: "center", marginTop: "5%" }}>
+          <h1>Please Login To See Your Cart</h1>
+        </div>
+      )}
     </>
   );
 };
