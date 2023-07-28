@@ -4,6 +4,7 @@ import Navbar from "../Navbar";
 import "../../styles/ProductsCSs/MultipleProducts.css";
 import { AiOutlineSearch, AiOutlineUp } from "react-icons/ai";
 import loader from "../../Assets/spinner.gif";
+import Footer from "../Footer";
 
 const MultipleProducts = () => {
   const [product, setProduct] = useState([]);
@@ -215,6 +216,8 @@ const MultipleProducts = () => {
           )}
         </div>
       </div>
+
+      <Footer />
     </>
   );
 };

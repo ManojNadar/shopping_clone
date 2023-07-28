@@ -3,6 +3,10 @@ import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
 import { MyContext } from "../Context/ContextContainer";
 import ProfileModal from "./ProfileModal";
+import "../styles/ProfileCss/Profile.css";
+import user from "../Assets/userDp.png";
+import { AiFillEdit } from "react-icons/ai";
+import Footer from "./Footer";
 
 const Profile = () => {
   const { login, state } = useContext(MyContext);
@@ -34,7 +38,7 @@ const Profile = () => {
 
   useEffect(() => {
     if (!state?.user) {
-      route("/login");
+      route("/");
     }
   }, [state]);
 
@@ -90,9 +94,8 @@ const Profile = () => {
   };
 
   return (
-    <div>
+    <>
       <Navbar />
-      <h2 style={{ textAlign: "center" }}>My PROFILE</h2>
 
       {profileModal ? (
         <div
@@ -105,6 +108,7 @@ const Profile = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            zIndex: "150",
           }}
         >
           <ProfileModal
@@ -116,30 +120,91 @@ const Profile = () => {
         </div>
       ) : null}
 
-      {currentuser ? (
-        <div style={{ textAlign: "center", width: "50%", margin: "auto" }}>
-          <h2 style={{ backgroundColor: "gold" }}>
-            Name : {currentuser.userName}
-          </h2>
-          <h2 style={{ backgroundColor: "gold" }}>
-            Email : {currentuser.email}{" "}
-          </h2>
-          <button
-            style={{
-              width: "50%",
-              margin: "auto",
-              height: "50px",
-              backgroundColor: "skyblue",
-              fontWeight: "bolder",
-              fontSize: "22px",
-            }}
-            onClick={openEditProfileModal}
-          >
-            Edit Profile
-          </button>
+      <div id="profileContainer">
+        <div className="mainProfileContainer">
+          <div className="leftProfileSection">
+            <div className="leftTopProfileDetails">
+              <div className="leftprofIcon">
+                <img src={user} alt="" />
+              </div>
+
+              {currentuser ? (
+                <div className="leftprofDetails">
+                  <div
+                    onClick={openEditProfileModal}
+                    style={{ position: "absolute", right: "5%", top: "7%" }}
+                  >
+                    <AiFillEdit />
+                  </div>
+                  <p>Name : {currentuser.userName}</p>
+                  <p>Email : {currentuser.email} </p>
+                  <p>Mobile : 1234567890</p>
+                </div>
+              ) : (
+                <div className="leftprofDetails">
+                  <p>Name : </p>
+                  <p>Email : </p>
+                  <p>Mobile : </p>
+                </div>
+              )}
+            </div>
+
+            <div className="leftNavigationsProfile">
+              <div
+                onClick={openEditProfileModal}
+                style={{
+                  textAlign: "center",
+                  borderBottom: "1px solid grey",
+                  padding: "4% 0",
+                  fontSize: "0.85em",
+                }}
+              >
+                <p>Change Password</p>
+              </div>
+
+              <p>My Offers</p>
+              <p>My First Citizen Points</p>
+              <p>My Wallet</p>
+              <p>My Transaction</p>
+              <p>My Wardrobe</p>
+              <p>My Address Book</p>
+              <p>Logout</p>
+              <p>DeleteProfile</p>
+            </div>
+          </div>
+
+          <div className="rightProfileSection">
+            {currentuser ? (
+              <div className="personalInfo">
+                <h2>Personal Information</h2>
+
+                <div>
+                  <p>Name </p>
+                  <p>{currentuser.userName}</p>
+                </div>
+                <div>
+                  <p>Email address </p>
+                  <p>{currentuser.email}</p>
+                </div>
+                <div>
+                  <p>Mobile Number </p>
+                  <p>1234567890</p>
+                </div>
+                <div>
+                  <p>Gender </p>
+                  <p>Male </p>
+                </div>
+
+                <button className="editProfBtn" onClick={openEditProfileModal}>
+                  Edit Profile
+                </button>
+              </div>
+            ) : null}
+          </div>
         </div>
-      ) : null}
-    </div>
+        <Footer />
+      </div>
+    </>
   );
 };
 

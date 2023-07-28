@@ -5,6 +5,7 @@ import Navbar from "../Navbar";
 import "../../styles/ProductsCSs/SingleProduct.css";
 import { AiOutlineShareAlt, AiOutlineHeart } from "react-icons/ai";
 import { MyContext } from "../../Context/ContextContainer";
+import Footer from "../Footer";
 
 const SingleProduct = () => {
   const [isLoggedIn, setisLoggedIn] = useState(false);
@@ -205,6 +206,8 @@ const SingleProduct = () => {
           </div>
         </div>
       </div>
+
+      <Footer />
     </>
   );
 };

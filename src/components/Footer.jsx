@@ -91,9 +91,9 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="footerTwoRightLast">
+          {/* <div className="footerTwoRightLast">
             <p> copyright @2023 shoppingstop5@gmail.com</p>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

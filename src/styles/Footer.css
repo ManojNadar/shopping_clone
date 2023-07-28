@@ -3,6 +3,7 @@
   /* border: 1px solid red; */
   background-color: #ececec;
   padding-bottom: 1%;
+  margin-top: 5%;
 }
 
 .footerOne {
@@ -51,15 +52,18 @@
 
 .footerTwo {
   display: flex;
+  justify-content: space-between;
   width: 65%;
   margin: 0 auto;
   border-top: 1px solid rgb(206, 206, 206);
   margin-top: 1%;
   padding-top: 1%;
+  /* border: 1px solid red; */
 }
 
 .footerTwoLeft {
-  width: 25%;
+  width: 30%;
+  /* border: 1px solid red; */
 }
 
 .footerTwoLeft > p {
@@ -74,7 +78,8 @@
 }
 
 .footerTwoCenter {
-  width: 25%;
+  /* border: 1px solid red; */
+  width: 30%;
 
   /* border: 1px solid blue; */
 }
@@ -97,7 +102,8 @@
 }
 
 .footerTwoRight {
-  width: 25%;
+  width: 30%;
+  /* border: 1px solid red; */
 }
 
 .socialIconsContainer {
@@ -113,8 +119,8 @@
   width: 100%;
 }
 
-.footerTwoRightLast > p {
+/* .footerTwoRightLast > p {
   font-size: 0.85em;
   color: grey;
   font-weight: bolder;
-}
+} */

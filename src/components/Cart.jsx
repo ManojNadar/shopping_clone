@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import "../styles/Cart.css";
 import { MyContext } from "../Context/ContextContainer";
+// import Footer from "./Footer";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -61,7 +62,7 @@ const Cart = () => {
     if (currentuser?.email) {
       const reguser = JSON.parse(localStorage.getItem("userdata"));
       for (var i = 0; i < reguser.length; i++) {
-        if (reguser[i].email == currentuser.email) {
+        if (reguser[i].email === currentuser.email) {
           reguser[i].cart = [];
           break;
         }

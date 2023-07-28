@@ -1,4 +1,5 @@
 import React from "react";
+import "../styles/ProfileCss/Profile.css";
 
 const ProfileModal = ({
   setProfileModal,
@@ -9,22 +10,15 @@ const ProfileModal = ({
   return (
     <form style={{ position: "relative" }} onSubmit={handleSubmit}>
       <button
-        style={{ position: "absolute", right: "7%", top: "5%" }}
+        style={{ position: "absolute", right: "7%", top: "5%", width: "5%" }}
         onClick={() => setProfileModal(false)}
       >
         x
       </button>
-      <div
-        style={{
-          width: "400px",
-          height: "400px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
-          backgroundColor: "gold",
-        }}
-      >
+
+      <div className="ediContainer">
+        <h3>Verify Login Password</h3>
+
         <input
           type="text"
           placeholder="update Name"

@@ -6,6 +6,7 @@ import "../styles/Navbar.css";
 import { BiShoppingBag } from "react-icons/bi";
 import Register from "./Register_Login/Register";
 import Login from "./Register_Login/Login";
+import king from "../Assets/king.png";
 
 const Navbar = () => {
   const [registerModal, setRegisterModal] = useState(false);
@@ -83,7 +84,7 @@ const Navbar = () => {
             onMouseLeave={() => setDropDown(false)}
             className="profileDropDown"
           >
-            <div>
+            <div onClick={() => route("/profile")}>
               <h4>My Profile</h4>
             </div>
 
@@ -130,14 +131,25 @@ const Navbar = () => {
               </div>
 
               {state?.user ? (
-                <p
+                <div
+                  style={{
+                    width: "45%",
+                    display: "flex",
+                    backgroundColor: "#ececec",
+                    textAlign: "center",
+                    borderRadius: "10px",
+                    padding: "7px 2px ",
+                  }}
                   className="username"
                   onClick={openRegisterModal}
                   onMouseOver={openProfileDropDown}
                   onMouseLeave={() => setDropDown(false)}
                 >
-                  {state.user.userName}
-                </p>
+                  <div style={{ width: "30%" }}>
+                    <img width="15px" height="15px" src={king} alt="" />
+                  </div>
+                  <p style={{ width: "55%" }}>{state.user.userName}</p>
+                </div>
               ) : (
                 <i
                   onClick={openRegisterModal}
