@@ -3,6 +3,8 @@ import Navbar from "./Navbar";
 import "../styles/Cart.css";
 import { MyContext } from "../Context/ContextContainer";
 // import Footer from "./Footer";
+import emptycart from "../Assets/emptycart.png";
+import emptycart2 from "../Assets/emptycart2.png";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -109,6 +111,9 @@ const Cart = () => {
                     marginTop: "5%",
                   }}
                 >
+                  <div className="emptyCart2">
+                    <img src={emptycart2} alt="" />
+                  </div>
                   <h1>Your Cart is Empty</h1>
                 </div>
               )}
@@ -150,6 +155,9 @@ const Cart = () => {
         </div>
       ) : (
         <div style={{ width: "100%", textAlign: "center", marginTop: "5%" }}>
+          <div className="emptyCart">
+            <img src={emptycart} alt="" />
+          </div>
           <h1>Please Login To See Your Cart</h1>
         </div>
       )}
