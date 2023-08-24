@@ -5,13 +5,15 @@ import { MyContext } from "../../Context/ContextContainer";
 import "../../styles/Register_Login_Css/Login.css";
 import { BiLogoFacebookCircle } from "react-icons/bi";
 import { FcGoogle } from "react-icons/fc";
+import axios from "axios";
+import { toast } from "react-hot-toast";
 
 const Login = ({ hideLoginModal, hideRegisterModal }) => {
   const { login } = useContext(MyContext);
 
   const [loginInput, setLoginInput] = useState({
-    loginEmail: "",
-    loginPassword: "",
+    email: "",
+    password: "",
   });
 
   const handleLoginChange = (e) => {
@@ -25,44 +27,39 @@ const Login = ({ hideLoginModal, hideRegisterModal }) => {
     });
   };
 
-  const submitLogin = (e) => {
+  const submitLogin = async (e) => {
     e.preventDefault();
 
     // console.log(loginInput);
 
-    let loginDetails = JSON.parse(localStorage.getItem("userdata"));
-
     // console.log(loginDetails);
 
-    const { loginEmail, loginPassword } = loginInput;
+    const { email, password } = loginInput;
 
-    if (loginEmail && loginPassword) {
-      let flag = false;
-      let currentUser;
+    if (email && password) {
+      const response = await axios.post("http://localhost:8000/login", {
+        loginInput,
+      });
 
-      for (let i = 0; i < loginDetails.length; i++) {
-        if (
-          loginDetails[i].email === loginEmail &&
-          loginDetails[i].password === loginPassword
-        ) {
-          flag = true;
-          currentUser = loginDetails[i];
-          break;
-        }
-      }
+      if (response.data.success) {
+        const user = response.data.user;
+        const token = response.data.token;
 
-      if (flag) {
-        alert("login success");
-        // route("/");
-        login(currentUser);
+        await login(user, token);
+
+        toast.success(response.data.message);
+        setLoginInput({
+          email: "",
+          password: "",
+        });
+
         hideLoginModal();
         hideRegisterModal();
       } else {
-        setLoginInput({ loginEmail: "", loginPassword: "" });
-        alert("invalid details");
+        toast.error(response.data.message);
       }
     } else {
-      alert("fill all the fields");
+      toast.error("fill all the fields");
     }
   };
   return (
@@ -82,8 +79,8 @@ const Login = ({ hideLoginModal, hideRegisterModal }) => {
           <div className="registerFormContainer">
             <div>
               <input
-                value={loginInput.loginEmail}
-                name="loginEmail"
+                value={loginInput.email}
+                name="email"
                 onChange={handleLoginChange}
                 type="email"
                 placeholder="Enter email"
@@ -92,9 +89,9 @@ const Login = ({ hideLoginModal, hideRegisterModal }) => {
 
             <div>
               <input
-                value={loginInput.loginPassword}
+                value={loginInput.password}
                 onChange={handleLoginChange}
-                name="loginPassword"
+                name="password"
                 type="password"
                 placeholder="Enter password"
               />
@@ -132,3 +129,62 @@ const Login = ({ hideLoginModal, hideRegisterModal }) => {
 };
 
 export default Login;
+
+// const { login } = useContext(MyContext);
+
+// const [loginInput, setLoginInput] = useState({
+//   email: "",
+//   password: "",
+// });
+
+// const handleLoginChange = (e) => {
+//   const name = e.target.name;
+//   const val = e.target.value;
+//   setLoginInput(() => {
+//     return {
+//       ...loginInput,
+//       [name]: val,
+//     };
+//   });
+// };
+
+// const submitLogin = (e) => {
+//   e.preventDefault();
+
+//   // console.log(loginInput);
+
+//   let loginDetails = JSON.parse(localStorage.getItem("userdata"));
+
+//   // console.log(loginDetails);
+
+//   const { email, password } = loginInput;
+
+//   if (email && password) {
+//     let flag = false;
+//     let currentUser;
+
+//     for (let i = 0; i < loginDetails.length; i++) {
+//       if (
+//         loginDetails[i].email === email &&
+//         loginDetails[i].password === password
+//       ) {
+//         flag = true;
+//         currentUser = loginDetails[i];
+//         break;
+//       }
+//     }
+
+//     if (flag) {
+//       alert("login success");
+//       // route("/");
+//       login(currentUser);
+//       hideLoginModal();
+//       hideRegisterModal();
+//     } else {
+//       setLoginInput({ email: "", password: "" });
+//       alert("invalid details");
+//     }
+//   } else {
+//     alert("fill all the fields");
+//   }
+// };

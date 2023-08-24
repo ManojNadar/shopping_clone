@@ -1,3 +1,4 @@
+import axios from "axios";
 import { createContext, useEffect, useReducer } from "react";
 
 export const MyContext = createContext();
@@ -23,8 +24,8 @@ const reducer = (state, action) => {
 const ContextContainer = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const login = (userData) => {
-    localStorage.setItem("currentuser", JSON.stringify(userData));
+  const login = (userData, token) => {
+    localStorage.setItem("shoppingToken", JSON.stringify(token));
     dispatch({
       type: "LOGIN",
       payload: userData,
@@ -32,20 +33,33 @@ const ContextContainer = ({ children }) => {
   };
 
   const logout = () => {
-    localStorage.removeItem("currentuser");
+    localStorage.removeItem("shoppingToken");
     dispatch({
       type: "LOGOUT",
     });
   };
 
   useEffect(() => {
-    const isUserPresent = JSON.parse(localStorage.getItem("currentuser"));
-    if (isUserPresent) {
-      dispatch({
-        type: "LOGIN",
-        payload: isUserPresent,
+    async function getCurremtUser() {
+      const token = JSON.parse(localStorage.getItem("shoppingToken"));
+
+      const response = await axios.post("http://localhost:8000/currentuser", {
+        token,
       });
+
+      if (response.data.success) {
+        dispatch({
+          type: "LOGIN",
+          payload: response.data.user,
+        });
+      } else {
+        dispatch({
+          type: "LOGOUT",
+        });
+      }
     }
+
+    getCurremtUser();
   }, []);
 
   return (
@@ -56,3 +70,12 @@ const ContextContainer = ({ children }) => {
 };
 
 export default ContextContainer;
+// useEffect(() => {
+//   const isUserPresent = JSON.parse(localStorage.getItem("currentuser"));
+//   if (isUserPresent) {
+//     dispatch({
+//       type: "LOGIN",
+//       payload: isUserPresent,
+//     });
+//   }
+// }, []);
