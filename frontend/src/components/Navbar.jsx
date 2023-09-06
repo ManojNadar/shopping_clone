@@ -148,7 +148,7 @@ const Navbar = () => {
                   <div style={{ width: "30%" }}>
                     <img width="15px" height="15px" src={king} alt="" />
                   </div>
-                  <p style={{ width: "55%" }}>{state.user.userName}</p>
+                  <p style={{ width: "55%" }}>{state.user.name}</p>
                 </div>
               ) : (
                 <i

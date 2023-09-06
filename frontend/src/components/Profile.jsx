@@ -136,7 +136,7 @@ const Profile = () => {
                   >
                     <AiFillEdit />
                   </div>
-                  <p>Name : {currentuser.userName}</p>
+                  <p>Name : {currentuser.name}</p>
                   <p>Email : {currentuser.email} </p>
                   <p>Mobile : 1234567890</p>
                 </div>
@@ -180,7 +180,7 @@ const Profile = () => {
 
                 <div>
                   <p>Name </p>
-                  <p>{currentuser.userName}</p>
+                  <p>{currentuser.name}</p>
                 </div>
                 <div>
                   <p>Email address </p>

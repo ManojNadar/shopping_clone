@@ -3,14 +3,14 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 import morgan from "morgan";
-import {
-  GetNumber,
-  Login,
-  Register,
-  getcurrentuser,
-  // sendOtp,
-  // verifyOtp,
-} from "./Controllers/UserController.js";
+// import {
+//   GetNumber,
+//   Login,
+//   Register,
+//   getcurrentuser,
+//   // sendOtp,
+//   // verifyOtp,
+// } from "./Controllers/UserController.js";
 import { addproduct } from "./Controllers/AddProduct.js";
 import { productMiddleWare } from "./Middleware/ProductMiddleware.js";
 import { GetProducts } from "./Controllers/GetProducts.js";
@@ -42,6 +42,12 @@ import { adminMiddleware, isvalidUser } from "./Middleware/AdminMiddleware.js";
 import { addComments, addRatings } from "./Controllers/RatingComments.js";
 import { GetEditProduct } from "./Controllers/GetEditProduct.js";
 import { SingleProduct } from "./Controllers/SingleProduct.js";
+import {
+  GetNumber,
+  Login,
+  Register,
+  getcurrentuser,
+} from "./Controllers/userController.js";
 // import { CheckToken } from "./Middleware/CheckToken.js";
 
 const app = express();

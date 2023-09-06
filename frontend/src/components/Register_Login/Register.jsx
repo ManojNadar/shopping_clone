@@ -8,10 +8,11 @@ import { toast } from "react-hot-toast";
 
 const Register = ({ hideRegisterModal, openLoginModal, setLoginModal }) => {
   const [data, setData] = useState({
-    userName: "",
+    name: "",
     email: "",
+    number: "",
     password: "",
-    cPassword: "",
+    confirmPassword: "",
     role: "Buyer",
     cart: [],
   });
@@ -35,11 +36,11 @@ const Register = ({ hideRegisterModal, openLoginModal, setLoginModal }) => {
   const registerForm = async (e) => {
     e.preventDefault();
 
-    const { userName, email, password, cPassword } = data;
+    const { name, email, password, confirmPassword, number } = data;
 
-    if (userName && email && password && cPassword) {
-      if (password.length >= 8) {
-        if (password === cPassword) {
+    if (name && email && password && confirmPassword && number) {
+      if (password.length >= 3) {
+        if (password === confirmPassword) {
           const response = await axios.post("http://localhost:8000/register", {
             data,
           });
@@ -47,10 +48,11 @@ const Register = ({ hideRegisterModal, openLoginModal, setLoginModal }) => {
           if (response.data.success) {
             toast.success(response.data.message);
             setData({
-              userName: "",
+              name: "",
               email: "",
+              number: "",
               password: "",
-              cPassword: "",
+              confirmPassword: "",
               role: "Buyer",
             });
 
@@ -89,11 +91,11 @@ const Register = ({ hideRegisterModal, openLoginModal, setLoginModal }) => {
           <div className="registerFormContainer">
             <div>
               <input
-                name="userName"
+                name="name"
                 onChange={handleChange}
-                value={data.userName}
+                value={data.name}
                 type="text"
-                placeholder="Enter username"
+                placeholder="Enter name"
               />
             </div>
 
@@ -104,6 +106,15 @@ const Register = ({ hideRegisterModal, openLoginModal, setLoginModal }) => {
                 value={data.email}
                 type="email"
                 placeholder="Enter email"
+              />
+            </div>
+            <div>
+              <input
+                name="number"
+                onChange={handleChange}
+                value={data.number}
+                type="text"
+                placeholder="Enter name"
               />
             </div>
 
@@ -119,10 +130,10 @@ const Register = ({ hideRegisterModal, openLoginModal, setLoginModal }) => {
 
             <div>
               <input
-                name="cPassword"
+                name="confirmPassword"
                 onChange={handleChange}
                 type="password"
-                value={data.cPassword}
+                value={data.confirmPassword}
                 placeholder="confirm password"
               />
             </div>
@@ -157,82 +168,3 @@ const Register = ({ hideRegisterModal, openLoginModal, setLoginModal }) => {
 };
 
 export default Register;
-
-// const [data, setData] = useState({
-//   userName: "",
-//   email: "",
-//   password: "",
-//   cPassword: "",
-//   role: "Buyer",
-//   cart: [],
-// });
-
-// //   console.log(data);
-
-// const handleChange = (e) => {
-//   const name = e.target.name;
-//   // console.log(name);
-//   const val = e.target.value;
-
-//   setData(() => {
-//     return {
-//       ...data,
-//       [name]: val,
-//     };
-//   });
-//   // console.log(name, val);
-// };
-
-// const registerForm = (e) => {
-//   e.preventDefault();
-
-//   const { userName, email, password, cPassword } = data;
-
-//   if (userName && email && password && cPassword) {
-//     if (password.length >= 8) {
-//       if (password === cPassword) {
-//         let storeUser = JSON.parse(localStorage.getItem("userdata")) || [];
-
-//         let userObj = {
-//           ...data,
-//           id: new Date().getTime().toString(),
-//         };
-
-//         let flag = false;
-
-//         for (let i = 0; i < storeUser.length; i++) {
-//           if (storeUser[i].email === email) {
-//             flag = true;
-//           }
-//         }
-
-//         if (!flag) {
-//           storeUser.push(userObj);
-//           localStorage.setItem("userdata", JSON.stringify(storeUser));
-
-//           alert("registration successfully Done");
-
-//           setData({
-//             userName: "",
-//             email: "",
-//             password: "",
-//             cPassword: "",
-//           });
-
-//           hideRegisterModal();
-//           setLoginModal(true);
-//         } else {
-//           alert("user already registered proceed too Login");
-//         }
-//       } else {
-//         alert("password and confirm password should be same");
-//       }
-//     } else {
-//       alert("password must be atleast 8 or more characters");
-//     }
-//   } else {
-//     alert("all fields are mandatory");
-//   }
-
-//   // alert("sumbitted");
-// };

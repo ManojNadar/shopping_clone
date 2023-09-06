@@ -43,19 +43,19 @@ const ContextContainer = ({ children }) => {
     async function getCurremtUser() {
       const token = JSON.parse(localStorage.getItem("shoppingToken"));
 
-      const response = await axios.post("http://localhost:8000/currentuser", {
-        token,
-      });
+      try {
+        const response = await axios.post("http://localhost:8000/currentuser", {
+          token,
+        });
 
-      if (response.data.success) {
-        dispatch({
-          type: "LOGIN",
-          payload: response.data.user,
-        });
-      } else {
-        dispatch({
-          type: "LOGOUT",
-        });
+        if (response.data.success) {
+          dispatch({
+            type: "LOGIN",
+            payload: response.data.user,
+          });
+        }
+      } catch (error) {
+        console.log(error);
       }
     }
 

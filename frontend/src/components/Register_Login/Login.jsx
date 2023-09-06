@@ -42,10 +42,10 @@ const Login = ({ hideLoginModal, hideRegisterModal }) => {
       });
 
       if (response.data.success) {
-        const user = response.data.user;
+        const user = response.data.userData;
         const token = response.data.token;
 
-        await login(user, token);
+        login(user, token);
 
         toast.success(response.data.message);
         setLoginInput({
