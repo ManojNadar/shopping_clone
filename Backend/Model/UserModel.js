@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 
 const userSchema = new Schema({
-  userName: {
+  name: {
     type: String,
     required: true,
   },
@@ -18,9 +18,27 @@ const userSchema = new Schema({
     enum: ["Buyer", "Seller", "Admin"],
     default: "Buyer",
   },
+  number: {
+    type: Number,
+    required: true,
+  },
+  isNumberVerified: {
+    type: Boolean,
+    default: false,
+  },
+  otpForNumberVerification: {
+    type: String,
+  },
   cart: {
     type: [String],
   },
+  wishlist: {
+    type: [String],
+  },
+  isBlocked: {
+    type: Boolean,
+    default: false,
+  },
 });
 
-export default mongoose.model("User", userSchema);
+export default mongoose.model("user", userSchema);
