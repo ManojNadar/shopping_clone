@@ -17,6 +17,8 @@ const Register = ({ hideRegisterModal, openLoginModal, setLoginModal }) => {
     cart: [],
   });
 
+  console.log(data);
+
   //   console.log(data);
 
   const handleChange = (e) => {
@@ -114,8 +116,15 @@ const Register = ({ hideRegisterModal, openLoginModal, setLoginModal }) => {
                 onChange={handleChange}
                 value={data.number}
                 type="text"
-                placeholder="Enter name"
+                placeholder="Enter number"
               />
+            </div>
+            <div>
+              <select name="role" onChange={handleChange}>
+                <option value="">Select your role</option>
+                <option value="Buyer">Buyer</option>
+                <option value="Seller">Seller</option>
+              </select>
             </div>
 
             <div>

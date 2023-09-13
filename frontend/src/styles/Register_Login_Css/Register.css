@@ -52,17 +52,26 @@
 
 .registerFormContainer {
   width: 70%;
-  margin: 5% auto 5% auto;
+  margin: 2% auto 5% auto;
   border: 2px solid black;
-  padding: 5% 0;
+  padding: 2% 0;
   box-shadow: 7px 7px 5px grey;
   border-radius: 15px;
 }
 .registerFormContainer > div {
   width: 80%;
-  margin: 3% auto;
+  margin: 2% auto;
 }
 .registerFormContainer > div > input {
+  width: 100%;
+  border: none;
+  height: 45px;
+  padding-left: 2%;
+  border-bottom: 1px solid grey;
+  font-size: 0.9em;
+  outline: none;
+}
+.registerFormContainer > div > select {
   width: 100%;
   border: none;
   height: 45px;

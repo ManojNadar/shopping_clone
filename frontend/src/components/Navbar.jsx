@@ -14,25 +14,10 @@ const Navbar = () => {
   const [isLoggedIN, setisLoggedIn] = useState(false);
   const [dropDown, setDropDown] = useState(false);
 
-  const [user, setUser] = useState({});
   const route = useNavigate();
   const { state, logout } = useContext(MyContext);
 
   // // console.log(state);
-
-  useEffect(() => {
-    let currentUser = JSON.parse(localStorage.getItem("currentuser"));
-
-    if (currentUser) {
-      setisLoggedIn(true);
-      setUser(currentUser);
-    }
-    if (state?.user) {
-      setUser(state?.user);
-    } else {
-      setUser({});
-    }
-  }, [state]);
 
   function openRegisterModal() {
     setRegisterModal(true);
@@ -87,7 +72,16 @@ const Navbar = () => {
             <div onClick={() => route("/profile")}>
               <h4>My Profile</h4>
             </div>
-
+            {state?.user?.role == "Seller" && (
+              <>
+                <div onClick={() => route("/addproducts")}>
+                  <h4>Add Products</h4>
+                </div>
+                <div onClick={() => route("/myproducts")}>
+                  <h4>My Products</h4>
+                </div>
+              </>
+            )}
             <div>
               <h4>My Orders</h4>
             </div>
@@ -126,10 +120,11 @@ const Navbar = () => {
             <div className="allIconsContainer">
               <i className="fa-regular fa-heart fa-xl"></i>
 
-              <div className="bagIcon" onClick={() => route("/cart")}>
-                <BiShoppingBag />
-              </div>
-
+              {state?.user?.role == "Buyer" && (
+                <div className="bagIcon" onClick={() => route("/cart")}>
+                  <BiShoppingBag />
+                </div>
+              )}
               {state?.user ? (
                 <div
                   style={{
@@ -148,7 +143,9 @@ const Navbar = () => {
                   <div style={{ width: "30%" }}>
                     <img width="15px" height="15px" src={king} alt="" />
                   </div>
-                  <p style={{ width: "55%" }}>{state.user.name}</p>
+                  <p style={{ width: "55%" }}>
+                    {state?.user?.name.slice(0, 7)}
+                  </p>
                 </div>
               ) : (
                 <i

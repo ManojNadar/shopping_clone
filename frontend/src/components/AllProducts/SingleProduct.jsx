@@ -6,57 +6,75 @@ import "../../styles/ProductsCSs/SingleProduct.css";
 import { AiOutlineShareAlt, AiOutlineHeart } from "react-icons/ai";
 import { MyContext } from "../../Context/ContextContainer";
 import Footer from "../Footer";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 const SingleProduct = () => {
-  const [isLoggedIn, setisLoggedIn] = useState(false);
-  const [currentEmail, setCurrentEmail] = useState("");
-  const [singleData, setSingleData] = useState([]);
-  const [singleProd, setSingleProd] = useState({});
-  const { id } = useParams();
+  const [singleProd, setSingleProd] = useState({
+    title: "",
+    price: "",
+    image: "",
+    category: "",
+  });
+  const { productId } = useParams();
   const { state } = useContext(MyContext);
+
   const route = useNavigate();
 
-  useEffect(() => {
-    fetch(`https://fakestoreapi.com/products/`)
-      .then((res) => res.json())
-      .then((res) => setSingleData(res));
-  }, []);
-
-  useEffect(() => {
-    if (id && singleData.length) {
-      const findProduct = singleData.find((elem) => elem.id === parseInt(id));
-      setSingleProd(findProduct);
-    }
-  }, [id, singleData]);
-
   // console.log(singleProd);
+  // console.log(id);
 
   useEffect(() => {
-    let getCurrentUser = JSON.parse(localStorage.getItem("currentuser"));
+    async function singleProduct() {
+      try {
+        const response = await axios.post(
+          "http://localhost:8000/singleproduct",
+          { productId }
+        );
 
-    if (getCurrentUser) {
-      setisLoggedIn(true);
-      setCurrentEmail(getCurrentUser.email);
-    }
-  }, []);
-
-  function addToCart() {
-    if (isLoggedIn) {
-      let registeredUser = JSON.parse(localStorage.getItem("userdata"));
-
-      for (let i = 0; i < registeredUser.length; i++) {
-        if (registeredUser[i].email === currentEmail) {
-          registeredUser[i].cart.push(singleProd);
-          localStorage.setItem("userdata", JSON.stringify(registeredUser));
+        if (response.data.success) {
+          setSingleProd(response.data.singleProductData);
         }
+      } catch (error) {
+        console.log(error.response.data.message);
       }
     }
-    alert("product added");
-    route("/multipleproducts");
-  }
 
+    singleProduct();
+  }, []);
+
+  const addToCart = async (productId) => {
+    try {
+      const token = JSON.parse(localStorage.getItem("shoppingToken"));
+      const response = await axios.post("http://localhost:8000/add-to-cart", {
+        productId,
+        token,
+      });
+
+      if (response.data.success) {
+        toast.success(response.data.message);
+        setTimeout(() => {
+          route("/cart");
+        }, 800);
+      }
+    } catch (error) {
+      toast.warn(error.response.data.message);
+    }
+  };
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
       <Navbar />
 
       <div id="singlProductHeader">
@@ -101,10 +119,10 @@ const SingleProduct = () => {
             <div>
               <AiOutlineHeart />
             </div>
-            {state?.user ? (
+            {state?.user?.role == "Buyer" ? (
               <button
                 className="addToCart"
-                onClick={() => addToCart(singleProd.id)}
+                onClick={() => addToCart(singleProd._id)}
               >
                 ADD TO BAG
               </button>

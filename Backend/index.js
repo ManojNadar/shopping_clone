@@ -46,6 +46,7 @@ import {
   GetNumber,
   Login,
   Register,
+  editProfile,
   getcurrentuser,
 } from "./Controllers/userController.js";
 // import { CheckToken } from "./Middleware/CheckToken.js";
@@ -64,6 +65,7 @@ app.post("/register", Register);
 app.post("/login", Login);
 app.post("/currentuser", getcurrentuser);
 app.post("/getnumber", GetNumber);
+app.post("/editprofile", editProfile);
 
 // otp -- --- --- --- ----
 

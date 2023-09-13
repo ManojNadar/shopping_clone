@@ -5,44 +5,28 @@ import "../../styles/ProductsCSs/MultipleProducts.css";
 import { AiOutlineSearch, AiOutlineUp } from "react-icons/ai";
 import loader from "../../Assets/spinner.gif";
 import Footer from "../Footer";
+import axios from "axios";
 
 const MultipleProducts = () => {
-  const [product, setProduct] = useState([]);
-  const [filterProduct, setFilterProduct] = useState([]);
-  const [query, setQuery] = useState("");
-  const router = useNavigate();
-
-  const url = "https://fakestoreapi.com/products";
-
-  // console.log(product);
-
-  async function fetchproduct() {
-    const fetchdata = await fetch(url);
-    const response = await fetchdata.json();
-    // console.log(response);
-    setProduct(response);
-    setFilterProduct(response);
-  }
+  const [allproducts, setAllProducts] = useState([]);
+  const route = useNavigate();
+  // console.log(allproducts);
 
   useEffect(() => {
-    fetchproduct();
-  }, []);
+    async function allProducts() {
+      try {
+        const response = await axios.get("http://localhost:8000/getproducts");
 
-  function handleSearchInput(e) {
-    const prodSearch = e.target.value;
-    setQuery(prodSearch);
-    // console.log(prodSearch);
-
-    if (prodSearch.length > 0) {
-      const searchData = product.filter((item) =>
-        item.title.toLowerCase().includes(prodSearch)
-      );
-
-      setProduct(searchData);
-    } else {
-      setProduct(filterProduct);
+        if (response.data.success) {
+          setAllProducts(response.data.allProducts);
+        }
+      } catch (error) {
+        console.log(error.response.data.message);
+      }
     }
-  }
+
+    allProducts();
+  }, []);
   return (
     <>
       <Navbar />
@@ -73,8 +57,6 @@ const MultipleProducts = () => {
             }}
             type="text"
             placeholder="search product"
-            value={query}
-            onChange={handleSearchInput}
           />
         </div>
       </div>
@@ -187,12 +169,12 @@ const MultipleProducts = () => {
         </div>
 
         <div id="mainProductsContainer">
-          {product.length ? (
-            product.map((item) => (
+          {allproducts.length ? (
+            allproducts.map((item) => (
               <div
                 key={item.id}
                 id="singleproduct"
-                onClick={() => router(`/singleproduct/${item.id}`)}
+                onClick={() => route(`/singleproduct/${item._id}`)}
               >
                 <div id="singleproductImg">
                   <img src={item.image} alt="" />

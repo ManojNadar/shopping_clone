@@ -25,7 +25,13 @@ export const addtocart = async (req, res) => {
     user?.cart.push(productId);
     await user.save();
 
-    return res.status(200).json({ success: true, user: user });
+    return res
+      .status(200)
+      .json({
+        success: true,
+        user: user,
+        message: "product added successfully",
+      });
   } catch (error) {
     return res.status(500).json({
       status: "error",

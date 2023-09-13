@@ -254,3 +254,49 @@ export const GetNumber = async (req, res) => {
 //       .json({ success: false, error: "error from catch block" });
 //   }
 // };
+
+
+
+
+export const editProfile = async (req, res) => {
+  try {
+    const { name, password } = req.body.prevValue;
+    const { token } = req.body;
+
+    // console.log(name, password, confirmPassword);
+
+    if (!token)
+      return res
+        .status(404)
+        .json({ success: false, error: "token is required" });
+
+    const decodeToken = jwt.verify(token, process.env.SECRET_KEY);
+
+    if (!decodeToken) {
+      return res
+        .status(404)
+        .json({ success: false, message: "not a valid token" });
+    }
+
+    const userId = decodeToken?.userId;
+
+    const hashPassword = await bcrypt.hash(password, 10);
+
+    const user = await User.findByIdAndUpdate(
+      userId,
+      { name, password: hashPassword },
+      { new: true }
+    );
+
+    if (user) {
+      await user.save();
+      return res.status(200).json({
+        success: true,
+        message: "Profile updated Success",
+        updateUser: user,
+      });
+    }
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};

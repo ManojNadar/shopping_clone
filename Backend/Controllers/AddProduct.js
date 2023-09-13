@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 
 export const addproduct = async (req, res) => {
   try {
-    const { title, price, image, category } = req.body.productData;
+    const { title, price, image, category } = req.body.product;
     const { token } = req.body;
 
     if (title && price && image && category && token) {

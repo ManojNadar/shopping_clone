@@ -5,6 +5,9 @@ import { MyContext } from "../Context/ContextContainer";
 // import Footer from "./Footer";
 import emptycart from "../Assets/emptycart.png";
 import emptycart2 from "../Assets/emptycart2.png";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -12,39 +15,54 @@ const Cart = () => {
   const [totalPrice, setTotalPrice] = useState(0);
 
   const { state } = useContext(MyContext);
-
+  const route = useNavigate();
   // console.log(cartItems);
-  useEffect(() => {
-    const currentuser = JSON.parse(localStorage.getItem("currentuser"));
 
-    if (currentuser) {
-      const regUsers = JSON.parse(localStorage.getItem("userdata"));
-      for (let i = 0; i < regUsers.length; i++) {
-        if (regUsers[i].email === currentuser.email) {
-          setCartItems(regUsers[i].cart);
+  useEffect(() => {
+    if (state?.user?.role != "Buyer") {
+      route("/");
+    }
+  }, [state?.user]);
+
+  useEffect(() => {
+    async function getCartProducts() {
+      try {
+        const token = JSON.parse(localStorage.getItem("shoppingToken"));
+        const response = await axios.post(
+          "http://localhost:8000/get-cart-products",
+          { token }
+        );
+
+        if (response.data.success) {
+          setCartItems(response.data.product);
         }
+      } catch (error) {
+        console.log(error);
       }
     }
+
+    getCartProducts();
   }, []);
 
-  const removeSingleItem = (id) => {
-    const currentuser = JSON.parse(localStorage.getItem("currentuser"));
+  const removeSingleItem = async (productId) => {
+    try {
+      const token = JSON.parse(localStorage.getItem("shoppingToken"));
 
-    const regUsers = JSON.parse(localStorage.getItem("userdata"));
-    if (currentuser) {
-      for (let i = 0; i < regUsers.length; i++) {
-        if (regUsers[i].email === currentuser.email) {
-          regUsers[i].cart.splice(id, 1);
-          setCartItems(regUsers[i].cart);
-          setTotalPrice(0);
-          localStorage.setItem("userdata", JSON.stringify(regUsers));
+      const response = await axios.post(
+        "http://localhost:8000/delete-cart-product",
+        {
+          productId,
+          token,
         }
+      );
+
+      if (response.data.success) {
+        toast.success(response.data.message);
+        setCartItems(response.data.products);
       }
+    } catch (error) {
+      toast.error(error.response.data.message);
     }
-
-    // alert("product removed");
-
-    // console.log(id);
   };
 
   useEffect(() => {
@@ -59,22 +77,21 @@ const Cart = () => {
     }
   }, [cartItems, totalPrice]);
 
-  const buyProduct = () => {
-    const currentuser = JSON.parse(localStorage.getItem("currentuser"));
-    if (currentuser?.email) {
-      const reguser = JSON.parse(localStorage.getItem("userdata"));
-      for (var i = 0; i < reguser.length; i++) {
-        if (reguser[i].email === currentuser.email) {
-          reguser[i].cart = [];
-          break;
-        }
+  const buyProduct = async () => {
+    try {
+      const token = JSON.parse(localStorage.getItem("shoppingToken"));
+
+      const response = await axios.post("http://localhost:8000/buyproduct", {
+        token,
+      });
+
+      if (response.data.success) {
+        toast.success(response.data.message);
+        setCartItems([]);
       }
-      localStorage.setItem("userdata", JSON.stringify(reguser));
-      setCartItems([]);
-      setTotalPrice(0);
-      // window.location.reload();
+    } catch (error) {
+      console.log(error);
     }
-    alert("Product will deliver soon, Thank you for shopping.");
   };
   return (
     <>
@@ -86,7 +103,7 @@ const Cart = () => {
             <div className="cartContainer">
               {cartItems.length ? (
                 cartItems.map((e, index) => (
-                  <div className="proContainer" key={e.id}>
+                  <div className="proContainer" key={e._id}>
                     <div className="imgSection">
                       <img src={e.image} alt="" />
                     </div>
@@ -94,10 +111,10 @@ const Cart = () => {
                     <div className="cartDetails">
                       <h3>{e.title}</h3>
                       <h4>Rs.{e.price}</h4>
-                      <h4 className="cartDesc">
+                      {/* <h4 className="cartDesc">
                         {e.description.slice(0, 100)}...
-                      </h4>
-                      <button onClick={() => removeSingleItem(index)}>
+                      </h4> */}
+                      <button onClick={() => removeSingleItem(e._id)}>
                         Remove
                       </button>
                     </div>

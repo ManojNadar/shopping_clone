@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
 import Navbar from "./Navbar";
-import { useNavigate } from "react-router-dom";
 import { MyContext } from "../Context/ContextContainer";
 import ProfileModal from "./ProfileModal";
 import "../styles/ProfileCss/Profile.css";
@@ -9,88 +8,11 @@ import { AiFillEdit } from "react-icons/ai";
 import Footer from "./Footer";
 
 const Profile = () => {
-  const { login, state } = useContext(MyContext);
-
   const [profileModal, setProfileModal] = useState(false);
+  const { state } = useContext(MyContext);
 
-  const [userData, setUserData] = useState({});
-
-  console.log(userData);
-
-  const route = useNavigate();
-  const currentuser = JSON.parse(localStorage.getItem("currentuser"));
-
-  useEffect(() => {
-    const currentuser = JSON.parse(localStorage.getItem("currentuser"));
-    if (!currentuser) {
-      route("/");
-    }
-
-    const regUser = JSON.parse(localStorage.getItem("Users"));
-    if (currentuser && regUser) {
-      for (var i = 0; i < regUser.length; i++) {
-        if (regUser[i].email === currentuser.email) {
-          setUserData(regUser[i]);
-        }
-      }
-    }
-  }, []);
-
-  useEffect(() => {
-    if (!state?.user) {
-      route("/");
-    }
-  }, [state]);
-
-  const openEditProfileModal = () => {
+  const openProfileModal = () => {
     setProfileModal(true);
-  };
-
-  const handleChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-
-    setUserData({ ...userData, [name]: value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (userData.userName && userData.password && userData.cPassword) {
-      if (userData.password === userData.cPassword) {
-        const currentuser = JSON.parse(localStorage.getItem("currentuser"));
-        const regUser = JSON.parse(localStorage.getItem("userdata"));
-
-        let flag = false;
-        for (let i = 0; i < regUser.length; i++) {
-          if (regUser[i].email === currentuser.email) {
-            regUser[i].userName = userData.userName;
-            regUser[i].password = userData.password;
-            regUser[i].cPassword = userData.cPassword;
-            currentuser.userName = userData.userName;
-            currentuser.password = userData.password;
-            currentuser.cPassword = userData.cPassword;
-
-            flag = true;
-          }
-        }
-
-        if (flag) {
-          login(currentuser);
-          localStorage.setItem("currentuser", JSON.stringify(currentuser));
-          localStorage.setItem("userdata", JSON.stringify(regUser));
-          alert("profile updated");
-          setUserData({});
-          setProfileModal(false);
-        } else {
-          alert("profile updated");
-        }
-      } else {
-        alert("password does not match");
-      }
-    } else {
-      alert("please fill all the fields");
-    }
   };
 
   return (
@@ -111,12 +33,7 @@ const Profile = () => {
             zIndex: "150",
           }}
         >
-          <ProfileModal
-            setProfileModal={setProfileModal}
-            handleSubmit={handleSubmit}
-            handleChange={handleChange}
-            userData={userData}
-          />
+          <ProfileModal setProfileModal={setProfileModal} />
         </div>
       ) : null}
 
@@ -128,16 +45,16 @@ const Profile = () => {
                 <img src={user} alt="" />
               </div>
 
-              {currentuser ? (
+              {state?.user ? (
                 <div className="leftprofDetails">
                   <div
-                    onClick={openEditProfileModal}
+                    onClick={openProfileModal}
                     style={{ position: "absolute", right: "5%", top: "7%" }}
                   >
                     <AiFillEdit />
                   </div>
-                  <p>Name : {currentuser.name}</p>
-                  <p>Email : {currentuser.email} </p>
+                  <p>Name : {state?.user?.name}</p>
+                  <p>Email : {state?.user?.email} </p>
                   <p>Mobile : 1234567890</p>
                 </div>
               ) : (
@@ -151,7 +68,6 @@ const Profile = () => {
 
             <div className="leftNavigationsProfile">
               <div
-                onClick={openEditProfileModal}
                 style={{
                   textAlign: "center",
                   borderBottom: "1px solid grey",
@@ -159,7 +75,7 @@ const Profile = () => {
                   fontSize: "0.85em",
                 }}
               >
-                <p>Change Password</p>
+                <p onClick={openProfileModal}>Change Password</p>
               </div>
 
               <p>My Offers</p>
@@ -174,17 +90,17 @@ const Profile = () => {
           </div>
 
           <div className="rightProfileSection">
-            {currentuser ? (
+            {state?.user ? (
               <div className="personalInfo">
                 <h2>Personal Information</h2>
 
                 <div>
                   <p>Name </p>
-                  <p>{currentuser.name}</p>
+                  <p>{state?.user?.name}</p>
                 </div>
                 <div>
                   <p>Email address </p>
-                  <p>{currentuser.email}</p>
+                  <p>{state?.user?.email}</p>
                 </div>
                 <div>
                   <p>Mobile Number </p>
@@ -195,7 +111,7 @@ const Profile = () => {
                   <p>Male </p>
                 </div>
 
-                <button className="editProfBtn" onClick={openEditProfileModal}>
+                <button onClick={openProfileModal} className="editProfBtn">
                   Edit Profile
                 </button>
               </div>
