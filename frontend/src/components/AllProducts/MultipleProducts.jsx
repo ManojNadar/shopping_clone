@@ -74,7 +74,7 @@ const MultipleProducts = () => {
 
       <div id="topSectionMulProducts">
         <p>Home Offers / All Offer / Products</p>
-        <h2>All Categories</h2>
+        <h2>All Products</h2>
         <div style={{ position: "relative", zIndex: 0 }}>
           <select onChange={handleCategoryChange}>
             <option>SORT BY : Category</option>
