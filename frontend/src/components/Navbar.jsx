@@ -11,7 +11,6 @@ import king from "../Assets/king.png";
 const Navbar = () => {
   const [registerModal, setRegisterModal] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
-  const [isLoggedIN, setisLoggedIn] = useState(false);
   const [dropDown, setDropDown] = useState(false);
 
   const route = useNavigate();
@@ -163,7 +162,7 @@ const Navbar = () => {
       <div className="centerNav">
         <div className="centerMiddleNavigation">
           <NavLink to="/multipleproducts" className="centerNavigations">
-            CATEGORIES
+            ALL PRODUCTS
           </NavLink>
           <NavLink className="centerNavigations" id="luxe">
             LUXE

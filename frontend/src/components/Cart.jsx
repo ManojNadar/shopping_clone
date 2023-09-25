@@ -97,6 +97,19 @@ const Cart = () => {
     <>
       <Navbar />
 
+      <ToastContainer
+        position="top-right"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
+
       {state?.user ? (
         <div className="cartBody">
           <div className="MainCartSection">
@@ -158,7 +171,10 @@ const Cart = () => {
                   </div>
 
                   <div className="mainTotalPrice">
-                    <h2>Total Price : {totalPrice}$</h2>
+                    <h2>
+                      Total Price :₹
+                      {totalPrice}
+                    </h2>
                   </div>
                   {cartItems.length ? (
                     <div className="buyProd">

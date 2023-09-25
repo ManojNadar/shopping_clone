@@ -75,7 +75,14 @@ const UpdateProduct = () => {
         <div className="updateProductContainer">
           <div className="updateProductSection">
             <div style={{ marginTop: "2%", marginLeft: "5%" }}>
-              <NavLink style={{ backgroundColor: "white" }} to="/myproducts">
+              <NavLink
+                style={{
+                  backgroundColor: "white",
+                  textDecoration: "none",
+                  color: "black",
+                }}
+                to="/myproducts"
+              >
                 Go back
               </NavLink>
             </div>

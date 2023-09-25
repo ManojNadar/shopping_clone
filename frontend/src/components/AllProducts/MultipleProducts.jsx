@@ -27,6 +27,47 @@ const MultipleProducts = () => {
 
     allProducts();
   }, []);
+
+  const handleCategoryChange = async (e) => {
+    const { value } = e.target;
+
+    try {
+      const response = await axios.get("http://localhost:8000/getproducts");
+
+      const getAllProduct = response.data.allProducts;
+
+      if (value === "Mens") {
+        const filterProduct = getAllProduct.filter(
+          (e) => e.category === "Mens"
+        );
+        setAllProducts(filterProduct);
+      } else if (value === "Womens") {
+        const filterProduct = getAllProduct.filter(
+          (e) => e.category === "Womens"
+        );
+        setAllProducts(filterProduct);
+      } else if (value === "Kids") {
+        const filterProduct = getAllProduct.filter(
+          (e) => e.category === "Kids"
+        );
+        setAllProducts(filterProduct);
+      } else if (value === "Home") {
+        const filterProduct = getAllProduct.filter(
+          (e) => e.category === "Home"
+        );
+        setAllProducts(filterProduct);
+      } else if (value === "Beauty") {
+        const filterProduct = getAllProduct.filter(
+          (e) => e.category === "Beauty"
+        );
+        setAllProducts(filterProduct);
+      } else {
+        setAllProducts(getAllProduct);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <Navbar />
@@ -35,12 +76,12 @@ const MultipleProducts = () => {
         <p>Home Offers / All Offer / Products</p>
         <h2>All Categories</h2>
         <div style={{ position: "relative", zIndex: 0 }}>
-          <select>
-            <option>SORT BY : DISCOUNT</option>
-            <option>RELEVANCE</option>
-            <option>POPULAR</option>
-            <option>NEW</option>
-            <option>DISCOUNT</option>
+          <select onChange={handleCategoryChange}>
+            <option>SORT BY : Category</option>
+            <option value="Mens">Mens</option>
+            <option value="Womens">Womens</option>
+            <option value="Kids">Kids</option>
+            <option value="Home">Home</option>
           </select>
 
           <div style={{ position: "absolute", right: "6%", top: "20%" }}>
@@ -172,7 +213,7 @@ const MultipleProducts = () => {
           {allproducts.length ? (
             allproducts.map((item) => (
               <div
-                key={item.id}
+                key={item._id}
                 id="singleproduct"
                 onClick={() => route(`/singleproduct/${item._id}`)}
               >
