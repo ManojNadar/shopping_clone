@@ -24,23 +24,30 @@ const ProfileModal = ({ setProfileModal }) => {
 
     if (name && password && confirmPassword) {
       if (password === confirmPassword) {
-        const token = JSON.parse(localStorage.getItem("shoppingToken"));
-        const response = await axios.post("http://localhost:8000/editprofile", {
-          token,
-          prevValue,
-        });
+        try {
+          const token = JSON.parse(localStorage.getItem("shoppingToken"));
+          const response = await axios.post(
+            "http://localhost:8000/editprofile",
+            {
+              token,
+              prevValue,
+            }
+          );
 
-        if (response.data.success) {
-          const userData = response.data.updateUser;
-          login(userData, token);
-          toast.success(response.data.message);
-          setProfileModal(false);
+          if (response.data.success) {
+            const userData = response.data.updateUser;
+            login(userData, token);
+            toast.success(response.data.message);
+            setProfileModal(false);
+          }
+        } catch (error) {
+          toast.error(error.message);
         }
       } else {
-        toast.warn("password doesnot match");
+        toast.error("password doesnot match");
       }
     } else {
-      toast.warn("all fields are mandatory");
+      toast.error("all fields are mandatory");
     }
   };
   return (

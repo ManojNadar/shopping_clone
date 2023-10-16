@@ -37,26 +37,30 @@ const Login = ({ hideLoginModal, hideRegisterModal }) => {
     const { email, password } = loginInput;
 
     if (email && password) {
-      const response = await axios.post("http://localhost:8000/login", {
-        loginInput,
-      });
-
-      if (response.data.success) {
-        const user = response.data.userData;
-        const token = response.data.token;
-
-        login(user, token);
-
-        toast.success(response.data.message);
-        setLoginInput({
-          email: "",
-          password: "",
+      try {
+        const response = await axios.post("http://localhost:8000/login", {
+          loginInput,
         });
 
-        hideLoginModal();
-        hideRegisterModal();
-      } else {
-        toast.error(response.data.message);
+        if (response.data.success) {
+          const user = response.data.userData;
+          const token = response.data.token;
+
+          login(user, token);
+
+          toast.success(response.data.message);
+          setLoginInput({
+            email: "",
+            password: "",
+          });
+
+          hideLoginModal();
+          hideRegisterModal();
+        } else {
+          toast.error(response.data.message);
+        }
+      } catch (error) {
+        console.log(error);
       }
     } else {
       toast.error("fill all the fields");
